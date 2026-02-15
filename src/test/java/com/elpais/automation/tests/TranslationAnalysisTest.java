@@ -12,9 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Test class for translation analysis functionality
- */
+// Test class for translation analysis functionality
 public class TranslationAnalysisTest {
     private static final Logger logger = LogManager.getLogger(TranslationAnalysisTest.class);
     private String env;
@@ -177,4 +175,3 @@ public class TranslationAnalysisTest {
         DriverManager.quitDriver();
     }
 }
-
