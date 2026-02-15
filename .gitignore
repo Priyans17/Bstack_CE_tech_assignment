@@ -1,0 +1,68 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+.idea_modules/
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/
+
+# Environment Variables / Secrets
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+*.p12
+*.jks
+*.keystore
+
+# WebDriverManager
+wdm/
+
+# Logs
+logs/
+*.log
+
+# Test Reports and Output
+test-output/
+surefire-reports/
+failsafe-reports/
+allure-results/
+allure-report/
+screenshots/
+downloads/
+downloaded_images/
+reports/
+extent-reports/
+
+# Generated artifacts
+*.png
+*.html
+*.json
+*.csv
+*.zip
+
+# Temp files
+*.tmp
+*.temp
+*.swp
+*~
+
+# System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# VS Code
+.vscode/
