@@ -8,9 +8,7 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Page Object for El País Opinion section
- */
+// Page Object for El País Opinion section
 public class OpinionPage extends BasePage {
     private static final Logger logger = LogManager.getLogger(OpinionPage.class);
 
@@ -25,9 +23,7 @@ public class OpinionPage extends BasePage {
         super(driver);
     }
 
-    /**
-     * Wait for articles to load
-     */
+    // Wait for articles to load
     public void waitForArticlesLoad() {
         logger.info("Waiting for articles to load");
         try {
@@ -38,9 +34,7 @@ public class OpinionPage extends BasePage {
         }
     }
 
-    /**
-     * Get all article elements
-     */
+    // Get all article elements
     private List<WebElement> getAllArticles() {
         logger.info("Fetching all articles");
         List<WebElement> articles = getElements(ARTICLE_ITEMS);
@@ -50,9 +44,7 @@ public class OpinionPage extends BasePage {
         return articles;
     }
 
-    /**
-     * Get first N articles with their details
-     */
+    // Get first N articles with their details
     public List<ArticleData> getTopArticles(int count) {
         logger.info("Getting top {} articles", count);
         waitForArticlesLoad();
@@ -115,9 +107,7 @@ public class OpinionPage extends BasePage {
         return articles;
     }
 
-    /**
-     * Article data holder class
-     */
+    // Article data holder class
     public static class ArticleData {
         public String title;
         public String content;
@@ -144,4 +134,3 @@ public class OpinionPage extends BasePage {
         }
     }
 }
-
