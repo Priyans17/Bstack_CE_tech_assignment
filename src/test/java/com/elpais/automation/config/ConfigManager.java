@@ -11,9 +11,7 @@ import java.util.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-/**
- * Configuration manager for loading application properties from .env file and config.properties
- */
+// Configuration manager for loading application properties from .env file and config.properties
 public class ConfigManager {
     private static final Logger logger = LogManager.getLogger(ConfigManager.class);
     private static final Properties properties = new Properties();
@@ -61,9 +59,7 @@ public class ConfigManager {
         }
     }
 
-    /**
-     * Get configuration value: prefer OS environment variables, then .env/properties file
-     */
+    // Get configuration value: prefer OS environment variables, then .env/properties file
     public static String get(String key) {
         // First prefer system environment variables
         String sys = System.getenv(key);
@@ -73,18 +69,14 @@ public class ConfigManager {
         return properties.getProperty(key, "");
     }
 
-    /**
-     * Get configuration value with default fallback
-     */
+    // Get configuration value with default fallback
     public static String get(String key, String defaultValue) {
         String val = get(key);
         if (val == null || val.isEmpty()) return defaultValue;
         return val;
     }
 
-    /**
-     * Get integer configuration value
-     */
+    // Get integer configuration value
     public static int getInt(String key, int defaultValue) {
         try {
             String value = get(key);
@@ -98,17 +90,13 @@ public class ConfigManager {
         }
     }
 
-    /**
-     * Get boolean configuration value
-     */
+    // Get boolean configuration value
     public static boolean getBoolean(String key, boolean defaultValue) {
         String value = get(key, String.valueOf(defaultValue));
         return Boolean.parseBoolean(value);
     }
 
-    /**
-     * Get long configuration value
-     */
+    // Get long configuration value
     public static long getLong(String key, long defaultValue) {
         try {
             String value = get(key);
@@ -122,9 +110,7 @@ public class ConfigManager {
         }
     }
 
-    /**
-     * Get all configuration values as map (returns property value first, then system env if set)
-     */
+    // Get all configuration values as map (returns property value first, then system env if set)
     public static String getEnv(String key) {
         String sys = System.getenv(key);
         if (sys != null && !sys.isEmpty()) return sys;
