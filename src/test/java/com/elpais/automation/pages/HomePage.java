@@ -6,9 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-/**
- * Page Object for El País home page
- */
+// Page Object for El País home page
 public class HomePage extends BasePage {
     private static final Logger logger = LogManager.getLogger(HomePage.class);
 
@@ -22,9 +20,7 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
-    /**
-     * Navigate to El País website
-     */
+    // Navigate to El País website
     public void navigate(String url) {
         logger.info("Navigating to: {}", url);
         driver.get(url);
@@ -32,9 +28,7 @@ public class HomePage extends BasePage {
         closeCookieBanner();
     }
 
-    /**
-     * Set language to Spanish
-     */
+    // Set language to Spanish
     public void setLanguageToSpanish() {
         logger.info("Setting language to Spanish");
         try {
@@ -48,9 +42,7 @@ public class HomePage extends BasePage {
         }
     }
 
-    /**
-     * Close cookie banner if present
-     */
+    // Close cookie banner if present
     public void closeCookieBanner() {
         logger.info("Attempting to close cookie banner");
         try {
@@ -66,9 +58,7 @@ public class HomePage extends BasePage {
         }
     }
 
-    /**
-     * Navigate to Opinion section
-     */
+    // Navigate to Opinion section
     public OpinionPage navigateToOpinionSection() {
         logger.info("Navigating to Opinion section");
         closeCookieBanner();
@@ -94,9 +84,7 @@ public class HomePage extends BasePage {
         return new OpinionPage(driver);
     }
 
-    /**
-     * Verify home page is loaded
-     */
+    // Verify home page is loaded
     public boolean isHomePageLoaded() {
         try {
             waitForPageLoad();
@@ -107,4 +95,3 @@ public class HomePage extends BasePage {
         }
     }
 }
-
