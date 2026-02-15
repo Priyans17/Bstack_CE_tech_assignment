@@ -7,9 +7,7 @@ import org.openqa.selenium.WebDriver;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Thread-safe WebDriver manager using ThreadLocal pattern
- */
+// Thread-safe WebDriver manager using ThreadLocal pattern
 public class DriverManager {
     private static final Logger logger = LogManager.getLogger(DriverManager.class);
     private static final ThreadLocal<WebDriver> threadLocalDriver = new ThreadLocal<>();
@@ -17,9 +15,7 @@ public class DriverManager {
     private DriverManager() {
     }
 
-    /**
-     * Initialize WebDriver based on environment and browser parameters
-     */
+    // Initialize WebDriver based on environment and browser parameters
     public static void initializeDriver(String env, String browserName, String browserVersion,
                                        String os, String osVersion, String resolution) {
         try {
@@ -56,9 +52,7 @@ public class DriverManager {
         }
     }
 
-    /**
-     * Initialize WebDriver for mobile testing
-     */
+    // Initialize WebDriver for mobile testing
     public static void initializeMobileDriver(String device, String osVersion, String browserName) {
         try {
             // Increase Selenium's internal HTTP client timeout for remote execution
@@ -79,9 +73,7 @@ public class DriverManager {
         }
     }
 
-    /**
-     * Get WebDriver instance for current thread
-     */
+    // Get WebDriver instance for current thread
     public static WebDriver getDriver() {
         WebDriver driver = threadLocalDriver.get();
         if (driver == null) {
@@ -90,9 +82,7 @@ public class DriverManager {
         return driver;
     }
 
-    /**
-     * Close and remove WebDriver for current thread
-     */
+    // Close and remove WebDriver for current thread
     public static void quitDriver() {
         WebDriver driver = threadLocalDriver.get();
         if (driver != null) {
@@ -107,9 +97,7 @@ public class DriverManager {
         }
     }
 
-    /**
-     * Take screenshot and save to file
-     */
+    // Take screenshot and save to file
     public static String takeScreenshot(String testName) {
         WebDriver driver = getDriver();
         if (driver instanceof org.openqa.selenium.TakesScreenshot) {
@@ -127,4 +115,3 @@ public class DriverManager {
         return "";
     }
 }
-
