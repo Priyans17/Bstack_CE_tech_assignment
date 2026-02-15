@@ -18,9 +18,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Translation service using Rapid Translate Multi Traduction API
- */
+// Translation service using Rapid Translate Multi Traduction API
 public class TranslationService {
     private static final Logger logger = LogManager.getLogger(TranslationService.class);
     private static final Map<String, String> translationCache = new HashMap<>();
@@ -28,9 +26,7 @@ public class TranslationService {
 
     private static final String RAPIDAPI_ENDPOINT = "https://rapid-translate-multi-traduction.p.rapidapi.com/t";
 
-    /**
-     * Translate text from Spanish to English using RapidAPI
-     */
+    // Translate text from Spanish to English using RapidAPI
     public static String translateToEnglish(String spanishText) {
         if (spanishText == null || spanishText.isEmpty()) {
             return "";
@@ -54,9 +50,7 @@ public class TranslationService {
         }
     }
 
-    /**
-     * Use Rapid Translate Multi Traduction API
-     */
+    // Use Rapid Translate Multi Traduction API
     private static String translateUsingRapidAPI(String text) {
         String apiKey = ConfigManager.get("RAPIDAPI_KEY");
         String apiHost = ConfigManager.get("RAPIDAPI_HOST", "rapid-translate-multi-traduction.p.rapidapi.com");
@@ -119,9 +113,7 @@ public class TranslationService {
         }
     }
 
-    /**
-     * Translate multiple texts
-     */
+    // Translate multiple texts
     public static Map<String, String> translateMultiple(Map<String, String> textsToTranslate) {
         Map<String, String> translatedTexts = new HashMap<>();
         for (Map.Entry<String, String> entry : textsToTranslate.entrySet()) {
@@ -130,12 +122,9 @@ public class TranslationService {
         return translatedTexts;
     }
 
-    /**
-     * Clear translation cache
-     */
+    // Clear translation cache
     public static void clearCache() {
         translationCache.clear();
         logger.info("Translation cache cleared");
     }
 }
-
