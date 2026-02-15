@@ -9,9 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.testng.annotations.*;
 import java.util.List;
 
-/**
- * Test class for article scraping functionality
- */
+// Test class for article scraping functionality
 public class ArticleScrapingTest {
     private static final Logger logger = LogManager.getLogger(ArticleScrapingTest.class);
     private String env;
@@ -95,4 +93,3 @@ public class ArticleScrapingTest {
         DriverManager.quitDriver();
     }
 }
-
