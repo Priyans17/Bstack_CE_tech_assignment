@@ -26,6 +26,8 @@ buildNumber.properties
 *.p12
 *.jks
 *.keystore
+.config.properties
+*.local.properties
 
 # WebDriverManager
 wdm/
@@ -66,3 +68,4 @@ desktop.ini
 
 # VS Code
 .vscode/
+
