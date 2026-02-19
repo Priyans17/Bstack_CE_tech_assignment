@@ -70,7 +70,7 @@ public class TranslationService {
             JsonObject jsonBody = new JsonObject();
             jsonBody.addProperty("from", "es");
             jsonBody.addProperty("to", "en");
-            jsonBody.addProperty("q", text);
+            jsonBody.addProperty("text", text);
 
             StringEntity entity = new StringEntity(gson.toJson(jsonBody), StandardCharsets.UTF_8);
             httpPost.setEntity(entity);

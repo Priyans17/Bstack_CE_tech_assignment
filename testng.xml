@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<suite name="El Pais Suite" parallel="false">
+<suite name="El Pais Suite" parallel="tests" thread-count="1">
 
     <!-- ================= LOCAL EXECUTION (FULL) ================= -->
     <test name="Local_Chrome">
@@ -36,7 +36,7 @@
 
     <!-- ================= OTHER BROWSERS (DEFINED BUT DISABLED) ================= -->
 
-    <test name="BrowserStack_Firefox_Windows" enabled="false">
+    <!-- <test name="BrowserStack_Firefox_Windows" enabled="false">
         <parameter name="env" value="browserstack"/>
         <parameter name="browserName" value="firefox"/>
         <parameter name="browserVersion" value="latest"/>
@@ -47,7 +47,7 @@
         <classes>
             <class name="com.elpais.automation.tests.TranslationAnalysisTest"/>
         </classes>
-    </test>
+    </test> -->
 
     <test name="BrowserStack_Safari_Mac" enabled="false">
         <parameter name="env" value="browserstack"/>

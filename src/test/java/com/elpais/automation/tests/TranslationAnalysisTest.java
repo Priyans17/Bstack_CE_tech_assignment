@@ -75,8 +75,8 @@ public class TranslationAnalysisTest {
             
             // 6. Download and save cover image
             if (article.imageUrl != null && !article.imageUrl.isEmpty()) {
-                String downloadPath = ConfigManager.get("download.path", "downloaded_images");
-                String imagePath = com.elpais.automation.utils.ImageDownloader.downloadImage(article.imageUrl, downloadPath);
+                String downloadPath = ConfigManager.get("DOWNLOAD_PATH", "downloaded_images");
+                String imagePath = com.elpais.automation.utils.ImageDownloader.downloadImageWithSelenium(article.imageUrl, downloadPath, DriverManager.getDriver());
                 logger.info("Image saved to: " + imagePath);
             }
         }

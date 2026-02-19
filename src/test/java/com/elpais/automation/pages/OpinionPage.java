@@ -14,10 +14,10 @@ public class OpinionPage extends BasePage {
 
     // Locators
     private static final By ARTICLE_ITEMS = By.xpath("//article[contains(@class, 'c c-o')]");
-    private static final By ARTICLE_TITLE = By.cssSelector("h2.c_t, h2[class*='c_t']");
-    private static final By ARTICLE_CONTENT = By.cssSelector("p.c_d, p[class*='c_d']");
+    private static final By ARTICLE_TITLE = By.cssSelector("h2.c_t, h2[class*='c_t'], h2 a");
+    private static final By ARTICLE_CONTENT = By.cssSelector("p.c_d, p[class*='c_d'], .c_d, .article_description");
     private static final By ARTICLE_LINK = By.cssSelector("h2 a");
-    private static final By ARTICLE_IMAGE = By.cssSelector("img.c_m_e, img[class*='c_m_e']");
+    private static final By ARTICLE_IMAGE = By.cssSelector("img.c_m_e, img[class*='c_m_e'], img");
 
     public OpinionPage(WebDriver driver) {
         super(driver);
@@ -56,6 +56,7 @@ public class OpinionPage extends BasePage {
             try {
                 WebElement article = articleElements.get(i);
                 scrollToElement(article);
+                Thread.sleep(2000); // Allow time for images/content to load after scroll
 
                 String title = "";
                 String content = "";
@@ -78,12 +79,38 @@ public class OpinionPage extends BasePage {
                 }
 
                 try {
-                    WebElement img = article.findElement(ARTICLE_IMAGE);
-                    imageUrl = img.getAttribute("src");
-                    // Handle lazy loading or high-res images
-                    String srcset = img.getAttribute("srcset");
-                    if (srcset != null && !srcset.isEmpty()) {
-                        imageUrl = srcset.split(",")[0].split(" ")[0];
+                    WebElement img = null;
+                    try {
+                        img = article.findElement(ARTICLE_IMAGE);
+                    } catch (Exception e) {
+                        img = article.findElement(By.tagName("img"));
+                    }
+
+                    if (img != null) {
+                        imageUrl = img.getAttribute("src");
+                        
+                        // Check for lazy-loaded image sources
+                        String dataSrc = img.getAttribute("data-src");
+                        if (dataSrc != null && !dataSrc.isEmpty()) {
+                            imageUrl = dataSrc;
+                        }
+                        
+                        // Handle high-res images from srcset
+                        String srcset = img.getAttribute("srcset");
+                        if (srcset != null && !srcset.isEmpty()) {
+                            // Take the last (usually highest res) or first
+                            String[] sources = srcset.split(",");
+                            imageUrl = sources[0].trim().split(" ")[0];
+                        }
+                    }
+                    
+                    // Ensure URL is absolute
+                    if (imageUrl != null && imageUrl.startsWith("//")) {
+                        imageUrl = "https:" + imageUrl;
+                    }
+                    
+                    if (imageUrl == null || imageUrl.isEmpty()) {
+                         logger.debug("Image URL empty for article {}", i);
                     }
                 } catch (Exception e) {
                     logger.debug("Could not find image for article {}", i);

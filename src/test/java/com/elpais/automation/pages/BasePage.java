@@ -77,6 +77,26 @@ public class BasePage {
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
+    protected boolean waitForElementVisible(By locator, int timeoutSeconds) {
+        try {
+            WebDriverWait customWait = new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds));
+            customWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    protected boolean waitForElementClickable(By locator, int timeoutSeconds) {
+        try {
+            WebDriverWait customWait = new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds));
+            customWait.until(ExpectedConditions.elementToBeClickable(locator));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 //Get attribute value
     
     protected String getAttribute(By locator, String attributeName) {
